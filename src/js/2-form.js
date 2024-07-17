@@ -36,10 +36,10 @@ function populateData() {
 function onFormSubmit(event) {
   event.preventDefault();
   if (formData.email === '' || formData.message === '') {
-    alert('Fill please all fields');
-    return;
+    return alert('Fill please all fields');
+  } else {
+    console.log(formData);
+    localStorage.removeItem(STORAGE_KEY);
+    form.reset();
   }
-  console.log(formData);
-  localStorage.removeItem(STORAGE_KEY);
-  form.reset();
 }

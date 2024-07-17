@@ -15,8 +15,12 @@ form.addEventListener('input', onFormInput);
 form.addEventListener('submit', onFormSubmit);
 
 function onFormInput(event) {
-  formData.email = formInput.value.trim();
-  formData.message = formMessage.value.trim();
+  // formData.email = formInput.value.trim();
+  // formData.message = formMessage.value.trim();
+
+  formData.email = event.currentTarget.elements.email.value.trim();
+  formData.message = event.currentTarget.elements.message.value.trim();
+
   localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
 }
 
@@ -26,8 +30,6 @@ function populateData() {
   if (savedData) {
     formInput.value = savedData.email;
     formMessage.value = savedData.message;
-    formData.email = savedData.email;
-    formData.message = savedData.message;
   }
 }
 
@@ -35,6 +37,7 @@ function onFormSubmit(event) {
   event.preventDefault();
   if (formData.email === '' || formData.message === '') {
     alert('Fill please all fields');
+    return;
   }
   console.log(formData);
   localStorage.removeItem(STORAGE_KEY);
